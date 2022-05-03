@@ -2,6 +2,7 @@ import express from "express";
 const router = express.Router();
 import User from "../models/User.js";
 import bcrypt from "bcrypt";
+
 //register
 
 router.post("/register", async (req, res) => {
@@ -9,7 +10,7 @@ router.post("/register", async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedpassword = await bcrypt.hash(req.body.password, salt);
 
-    const newUser = await new User({
+     const newUser = await new User({
       username: req.body.username,
       email: req.body.email,
       password: hashedpassword,

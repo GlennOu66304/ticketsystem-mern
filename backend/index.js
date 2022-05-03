@@ -19,9 +19,7 @@ app.use(morgan("common"));
 
 import userRoute from "./routes/users.js";
 import authRoute from "./routes/auth.js";
-import postsRoute from "./routes/posts.js";
-import conversationRoute from "./routes/conversation.js";
-import messageRoute from "./routes/messages.js";
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "public/images");
@@ -43,9 +41,9 @@ app.post("/api/upload", upload.single("file"), function (req, res) {
 
 app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
-app.use("/api/posts", postsRoute);
-app.use("/api/conversation", conversationRoute);
-app.use("/api/message", messageRoute);
+// app.use("/api/posts", postsRoute);
+// app.use("/api/conversation", conversationRoute);
+// app.use("/api/message", messageRoute);
 app.use(express.static("build"));
 
 dotenv.config();

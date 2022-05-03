@@ -1,7 +1,44 @@
 # MERN APP build process
 
 
-## A.MERN
+
+# Back end
+
+## 
+
+## File Cleaning
+
+1.change the require method to import method
+
+2.Add the doc folder: include the post man visit method
+
+## Process:
+
+1.change the type to module
+
+2.change the index.js (route all), routes,other 
+
+## [__dirname is not defined in Node 14 version](https://stackoverflow.com/questions/64383909/dirname-is-not-defined-in-node-14-version)
+
+```javascript
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+```
+
+
+
+3.when you write the test file, with the postman, then export it(back)
+
+3.1build a folder doc, include the postman folder and the UI folder(UI folder in the client), and README.md for the back end only
+
+
+
+
+
+## MERN(Base Project)
 
 1.Social Media Project
 
@@ -9,9 +46,31 @@
 
 3.Memories
 
+# Process
+
+1.build the back end:
+
+**Mongoose:**
+
+Model --> conttroler -- > routes
+
+**Mongodb:**
 
 
-## Project:
+
+DAO(Data as an Object):mongodb database process --> conttroler:send the data back the front end (restaurants.route.js)-- > routes
+
+[[How the DAOs objects works if they never get instantiated?](https://www.mongodb.com/community/forums/t/how-the-daos-objects-works-if-they-never-get-instantiated/93422)]
+
+
+
+2.build the front end 
+
+3.axios and fetch use the back end data
+
+
+
+## Udemy Project:
 
 Feed Back (Pure UI)
 
