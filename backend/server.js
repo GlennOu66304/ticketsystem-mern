@@ -58,9 +58,10 @@ mongoose.connect(
     console.log("Connect to Mangodb Successfully");
   }
 );
-
+// images view
 app.use("/images", express.static(path.join(__dirname, "public/images")));
 
+// load the react build file production mode
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "build", "index.html"));
 });

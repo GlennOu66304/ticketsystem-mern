@@ -10,7 +10,7 @@ router.post("/test",  (req, res) => {
   res.json({ msg: "user route connected" });
 });
 // register
-router.get("/register", userController.register);
+router.post("/register", userController.register);
 // router.get("/:id", PostController.getOnePost);
 // //build Post
 // router.post("/", authJwt, PostController.buildPost);
