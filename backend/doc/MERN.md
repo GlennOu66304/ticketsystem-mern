@@ -4,7 +4,18 @@
 
 
 
-## Goal
+## DeprecationWarning: collection.ensureIndex is deprecated. Use createIndexes instead.
+
+```js
+mongoose.connect(config.dbUri, {
+  useCreateIndex: true,
+  useNewUrlParser: true
+})
+```
+
+[DeprecationWarning: collection.ensureIndex is deprecated. Use createIndexes instead.](https://github.com/Automattic/mongoose/issues/6890)
+
+## ## Model --> Controller-Routes
 
 1.change the model -route to model -- contrioller -routes
 

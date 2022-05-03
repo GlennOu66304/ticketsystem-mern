@@ -18,8 +18,9 @@ app.use(helmet());
 app.use(morgan("common"));
 
 import userRoute from "./routes/users.js";
-import authRoute from "./routes/auth.js";
+import authRoute from "./routes/auth2.js";
 
+// file upload
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "public/images");
@@ -28,8 +29,10 @@ const storage = multer.diskStorage({
     cb(null, req.body.name);
   },
 });
+
 const upload = multer({ storage });
 
+// file upoad function
 app.post("/api/upload", upload.single("file"), function (req, res) {
   try {
     return res.status(200).json("File upload successfully");
@@ -50,7 +53,7 @@ dotenv.config();
 // mongodb connect
 mongoose.connect(
   process.env.MONGO_URL,
-  { useNewUrlParser: true, useUnifiedTopology: true },
+  { useNewUrlParser: true, useUnifiedTopology: true,useCreateIndex: true, },
   () => {
     console.log("Connect to Mangodb Successfully");
   }

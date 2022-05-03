@@ -6,15 +6,13 @@
 // b.middileware to verify the token before visit other resource
 // auth router will be in the server.js
 // 2.data model import
-import UserModel from "../../models/User.js";
+import UserModel from "../models/User.js";
 
 // import passowrd hash
 import bcrypt from "bcrypt";
 
-dotenv.config();
-
 export default {
- register: (req, res) => {
+  register: (req, res) => {
     UserModel.findOne({ email: req.body.email }).then((user) => {
       if (user) {
         return res.status(400).json({ email: "邮箱已经被注册" });
