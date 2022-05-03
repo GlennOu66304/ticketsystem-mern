@@ -1,7 +1,6 @@
-const express = require('express')
-const Message = require('../models/Message')
+import express from "express";
 const router = express.Router()
-
+import Message from "../models/Message.js";
 router.post('/', async (req, res) => {
     const newMessage = new Message(req.body)
 
@@ -27,4 +26,4 @@ router.get("/:conversationId", async (req, res) => {
     }
 })
 
-module.exports = router
+export default router

@@ -1,8 +1,8 @@
-const express = require('express')
-const User = require('../models/User')
+import express from "express";
+import User from "../models/User.js ";
 const router = express.Router()
-const bcrypt = require('bcrypt');
 
+import  bcrypt from "bcrypt";
 
 //Update  user
 router.put('/:id', async (req, res) => {
@@ -138,4 +138,4 @@ router.put('/:id/unfollow', async (req, res) => {
 //   res.send('it is the user route')
 // })
 
-module.exports = router
+export default router

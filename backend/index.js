@@ -1,63 +1,69 @@
-const express = require('express')
-const mongoose = require('mongoose')
-const dotenv = require('dotenv')
-const helmet = require('helmet')
-const morgan = require('morgan')
-const multer = require('multer')
-const path = require('path')
+import express from "express";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+import helmet from "helmet";
+import morgan from "morgan";
+import multer from "multer";
+import path from "path";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 
-const app = express()
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const app = express();
 
 app.use(express.json());
-app.use(helmet())
-app.use(morgan('common'))
+app.use(helmet());
+app.use(morgan("common"));
 
+import userRoute from "./routes/users.js";
+import authRoute from "./routes/auth.js";
+import postsRoute from "./routes/posts.js";
+import conversationRoute from "./routes/conversation.js";
+import messageRoute from "./routes/messages.js";
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "public/images");
+  },
+  filename: (req, file, cb) => {
+    cb(null, req.body.name);
+  },
+});
+const upload = multer({ storage });
 
-const userRoute = require('./routes/users')
-const authRoute = require('./routes/auth')
-const postsRoute = require('./routes/posts')
-const conversationRoute = require('./routes/conversation')
-const messageRoute = require('./routes/messages')
-
-const storage = multer.diskStorage(
-  {
-    destination: (req, file, cb) => {
-      cb(null, "public/images");
-    },
-    filename: (req, file, cb) => {
-      cb(null, req.body.name);
-    }
-  }
-)
-const upload = multer({ storage })
-
-app.post('/api/upload', upload.single('file'), function (req, res) {
+app.post("/api/upload", upload.single("file"), function (req, res) {
   try {
     return res.status(200).json("File upload successfully");
+  } catch (err) {
+    console.log(err);
   }
-  catch (err) {
-    console.log(err)
-  }
-})
+});
 // ...
 
-app.use('/api/users', userRoute)
-app.use('/api/auth', authRoute)
-app.use('/api/posts', postsRoute)
-app.use('/api/conversation', conversationRoute)
-app.use('/api/message', messageRoute)
-app.use(express.static("build"))
+app.use("/api/users", userRoute);
+app.use("/api/auth", authRoute);
+app.use("/api/posts", postsRoute);
+app.use("/api/conversation", conversationRoute);
+app.use("/api/message", messageRoute);
+app.use(express.static("build"));
 
-dotenv.config()
-mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true }, () => {
-  console.log("Connected to Mangodb")
-});
-app.use("/images", express.static(path.join(__dirname, 'public/images')))
+dotenv.config();
+// mongodb connect
+mongoose.connect(
+  process.env.MONGO_URL,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  () => {
+    console.log("Connect to Mangodb Successfully");
+  }
+);
+
+app.use("/images", express.static(path.join(__dirname, "public/images")));
 
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "build", "index.html"));
 });
 
 app.listen(8800, () => {
-  console.log("Back end server 8800 is running!")
-})
+  console.log("Back end server 8800 is running!");
+});
