@@ -1,5 +1,23 @@
 
 
+## Goal:
+
+1.build the protect route system
+
+
+
+## Process
+
+1.you can refer the private router system from React Travel system, React Admin
+
+2.Social Media
+
+3.Memories
+
+3.Andy MERN
+
+
+
 
 
 
@@ -15,7 +33,7 @@ mongoose.connect(config.dbUri, {
 
 [DeprecationWarning: collection.ensureIndex is deprecated. Use createIndexes instead.](https://github.com/Automattic/mongoose/issues/6890)
 
-## ## Model --> Controller-Routes
+## Model --> Controller-Routes
 
 1.change the model -route to model -- contrioller -routes
 

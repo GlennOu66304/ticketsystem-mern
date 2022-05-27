@@ -1,11 +1,3 @@
-// install the pacakge, (andy MERN and React TS)
-// import the serct key and package
-// set up the logic to return the token
-// hide the success message output
-// a.buidl the secrect
-// b.middileware to verify the token before visit other resource
-// auth router will be in the server.js
-// 2.data model import
 import UserModel from "../models/User.js";
 
 // import passowrd hash
