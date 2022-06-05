@@ -1,4 +1,26 @@
-.homeContainer{
-    display: flex;
-     width:100%;
+.homeContainer {
+  width: 100%;
+  text-align: center;
+}
+
+.create-tickets {
+  width: 900px;
+  padding-top: 20px;
+  text-align: center;
+  border: 1px solid gray;
+  margin-left: 425px;
+  margin-bottom: 20px;
+  margin-top: 200px;
+  cursor: pointer;
+}
+
+.check-tickets {
+  width: 900px;
+  padding-top: 20px;
+  text-align: center;
+  border: 1px solid gray;
+  margin-left: 425px;
+  background-color: black;
+  color: white;
+  cursor: pointer;
 }
