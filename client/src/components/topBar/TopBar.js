@@ -1,11 +1,11 @@
 import "./topBar.css";
-import {  Person, Notifications } from "@material-ui/icons";
+import { FaSignInAlt, FaUserAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../contexts/AuthContext";
-import { useContext } from "react";
+// import { AuthContext } from "../../contexts/AuthContext";
+// import { useContext } from "react";
 
 export default function TopBar() {
-  const { user } = useContext(AuthContext);
+  //   const { user } = useContext(AuthContext);
 
   return (
     <div className="topbarContainer">
@@ -16,17 +16,14 @@ export default function TopBar() {
       </div>
 
       <div className="topbarRight">
-        <div className="topbarIcons">
-          <div className="topbarIconItem">
-            <Person />
-           
-          </div>
-
-          <div className="topbarIconItem">
-            <Notifications />
-          
-          </div>
-        </div>
+        {/* login */}
+        <Link to="/login" style={{ textDecoration: "none" }}>
+          <FaSignInAlt /> Login
+        </Link>
+        {/* register */}
+        <Link to="/register" style={{ textDecoration: "none" }}>
+          <FaUserAlt /> Register
+        </Link>
       </div>
     </div>
   );
