@@ -18,7 +18,6 @@ function App() {
       <Switch>
         <Route exact path="/">
           <TopBar />
-          {/* {user ? <Home /> : <Register />} */}
           <Home />
         </Route>
 
@@ -32,13 +31,9 @@ function App() {
           <Register />
         </Route>
 
-        <PrivateRoute path="/dashboard" component={TicketsList}>
-          <TopBar />
-        </PrivateRoute>
+        <PrivateRoute path="/dashboard" component={TicketsList} />
 
-        <PrivateRoute path="/createticket" component={CreateTicket}>
-          <TopBar />
-        </PrivateRoute>
+        <PrivateRoute path="/createticket" component={CreateTicket} />
       </Switch>
     </Router>
   );

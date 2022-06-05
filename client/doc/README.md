@@ -12,9 +12,15 @@ Login  redux usage
 
 2.3 private router route page component fix
 
+[react---私有路由和权限判断（PrivateRoute + withRouter](https://blog.csdn.net/DcTbnk/article/details/107773716)
+
 3.login click the triggier the login action in reduex
 
-4.
+1.Reduex
+
+[redux学习笔记之createSlice、createAsyncThunk](https://www.jianshu.com/p/f62fa2cd4fe9)
+
+4.change the isLogin to true
 
 
 

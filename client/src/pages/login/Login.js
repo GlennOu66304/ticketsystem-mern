@@ -1,33 +1,25 @@
-import React, { useContext } from "react";
 import "./login.css";
 import { useRef } from "react";
-import { loginCall } from "../../apiCalls";
-import { AuthContext } from "../../contexts/AuthContext";
 import { FaSignInAlt } from "react-icons/fa";
-import { withRouter } from "react-router-dom";
+import { withRouter} from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { signIn } from "../../redux/auth/slice1";
+import { useHistory } from "react-router-dom";
+
 function Login(props) {
   const email = useRef();
   const password = useRef();
-  const { user, dispatch } = useContext(AuthContext);
-
-  console.log(props);
-  // 路由组件中会包含
-  //    history
-  //    location
-  //    match
-  // 此处可以使用new URLSearchParams获取当前查询条件
-  //  使用模块qs也能获取查询条件
-  const params = new URLSearchParams(props.location.search);
-  console.log(params.get("t"));
-
+  
+  const dispatch = useDispatch();
+  const history = useHistory();
   const handleClick = (e) => {
     e.preventDefault();
-    // loginCall(
-    //   { email: email.current.value, password: password.current.value },
-    //   dispatch
-    // );
+    dispatch(
+      signIn({ email: email.current.value, password: password.current.value })
+    );
+    
+    history.push("/dashboard");
   };
-  // console.log(user);
 
   return (
     <div className="login">
