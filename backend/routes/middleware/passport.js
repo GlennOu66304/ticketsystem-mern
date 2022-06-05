@@ -2,13 +2,13 @@
 // give the authorization = bearer + token in the header, you can get the user's id, user's nam
 // 4.build a new passowrd.js to implete the logic(passport.js) in auth folder
 // 1)import User model, passport,passport-jwt, mongoose package,keys
-import dotenv from "dotenv";
+// import dotenv from "dotenv";
 import UserModel from "../../models/User.js";
 import { Strategy as JWTStrategy, ExtractJwt } from "passport-jwt";
 import passport from "passport";
 
-dotenv.config();
-const privateKey = process.env.JWT_SECRET_KEY;
+// dotenv.config();
+const privateKey = "ticketSystem";
 
 // opts:2)const opts, extract jws
 const opts = {};

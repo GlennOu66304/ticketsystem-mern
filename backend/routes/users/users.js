@@ -1,9 +1,7 @@
 import express from "express";
-import User from "../../models/User.js ";
+import { authJwt } from "../middleware/passport.js";
 import UserController from "./controller.js";
 const router = express.Router();
-
-import bcrypt from "bcrypt";
 
 //Update  user
 router.put("/:id", UserController.updateUser);
@@ -13,7 +11,7 @@ router.delete("/:id", UserController.deleteUser);
 
 //get a user
 
-router.get("/", UserController.getAUser);
+router.get("/", authJwt, UserController.getAUser);
 
 //getFriends
 
