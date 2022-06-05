@@ -2,15 +2,18 @@ import UserModel from "../../models/User.js";
 
 // import passowrd hash
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 export default {
   register: (req, res) => {
+    // collection check the user in the database
     UserModel.findOne({ email: req.body.email }).then((user) => {
       if (user) {
         return res.status(400).json({ email: "邮箱已经被注册" });
       }
+      // user data fromat check
       const newUser = new UserModel({
-        name: req.body.name,
+        username: req.body.username,
         email: req.body.email,
         password: req.body.password,
       });
@@ -23,18 +26,18 @@ export default {
         bcrypt.hash(newUser.password, salt, (err, hash) => {
           if (err) throw err;
           newUser.password = hash;
-          newUser.save().then((user) => res.json(user));
+          newUser.save().then((user) => res.json(user)); // send back the user data in the database
         });
       });
     });
   },
 
-  signin: (req, res) => {
+  login: (req, res) => {
     //  validate the login
-    const { errors, isValid } = validateLoginInput(req.body);
-    if (!isValid) {
-      res.status(400).json(errors);
-    }
+    // const { errors, isValid } = validateLoginInput(req.body);
+    // if (!isValid) {
+    //   res.status(400).json(errors);
+    // }
     // get the email and password from the req.body, then assing a value
     const email = req.body.email;
     const password = req.body.password;
@@ -54,7 +57,7 @@ export default {
           // res.status(200).json({ msg: "succsss" });
           // user id in the database
           const rule = { id: user.id, name: user.name };
-
+          const privateKey = "ticketSystem";
           // jwt token generate
           jwt.sign(rule, privateKey, { expiresIn: 3600 }, (err, token) => {
             if (err) throw err;

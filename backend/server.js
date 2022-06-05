@@ -18,7 +18,7 @@ app.use(helmet());
 app.use(morgan("common"));
 
 import userRoute from "./routes/users/users.js";
-import authRoute from "./routes/auth/auth2.js";
+import authRoute from "./routes/auth/auth.js";
 
 // file upload
 const storage = multer.diskStorage({
