@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
 
-import userRoute from "./routes/users.js";
+import userRoute from "./routes/users/users.js";
 import authRoute from "./routes/auth2.js";
 
 // file upload
@@ -42,6 +42,7 @@ app.post("/api/upload", upload.single("file"), function (req, res) {
 });
 // ...
 
+// router system here
 app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
 // app.use("/api/posts", postsRoute);

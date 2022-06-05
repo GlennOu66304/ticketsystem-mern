@@ -1,4 +1,4 @@
-// Goal: 
+// Goal:
 // give the authorization = bearer + token in the header, you can get the user's id, user's nam
 // 4.build a new passowrd.js to implete the logic(passport.js) in auth folder
 // 1)import User model, passport,passport-jwt, mongoose package,keys
@@ -38,5 +38,3 @@ passport.use(
 export const authJwt = passport.authenticate("jwt", {
   session: false,
 });
-
-

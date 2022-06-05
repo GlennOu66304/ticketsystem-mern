@@ -1,3 +1,27 @@
+
+
+
+
+
+
+## Front end
+
+1.css framework
+
+2.pages
+
+3.component
+
+4.ajax library
+
+5.post man json doc
+
+
+
+
+
+
+
 # REACT Social Project
 
 ## To do list
@@ -9,6 +33,7 @@
 6.Netlify with DigitalOcean
 7.MD Image holder 
 8.
+
 ## Google NCR
 [建议大家都把 Google 给 ncr 一下](https://www.v2ex.com/t/770093) 
 ## Resources:

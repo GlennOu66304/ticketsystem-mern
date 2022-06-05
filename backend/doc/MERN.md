@@ -2,7 +2,11 @@
 
 ## Goal:
 
-1.build the protect route system
+1.router logic:
+
+1.1 build the model model folder
+
+1.2 routers.controller and routes file in the router's folder
 
 
 
