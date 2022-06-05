@@ -3,7 +3,7 @@ import "./login.css";
 import { useRef } from "react";
 import { loginCall } from "../../apiCalls";
 import { AuthContext } from "../../contexts/AuthContext";
-
+import { FaSignInAlt } from "react-icons/fa";
 export default function Login() {
   const email = useRef();
   const password = useRef();
@@ -16,18 +16,17 @@ export default function Login() {
       dispatch
     );
   };
-  console.log(user);
+  // console.log(user);
 
   return (
     <div className="login">
       <div className="loginWrapper">
         {/* login left */}
         <div className="loginLeft">
-          <h3 className="loginLogo">Lama Social</h3>
-          <span className="loginDesc">
-           
-            Connect with the friends and world around you on Lamasocial
-          </span>
+          <h3 className="loginLogo">
+            <FaSignInAlt /> Login
+          </h3>
+          <span className="loginDesc">Please Login to get Support</span>
         </div>
         {/* loginRight */}
         <div className="loginRight">
@@ -47,13 +46,8 @@ export default function Login() {
               type="password"
               ref={password}
             />
-            <button className="loginButton">
-             
-            </button>
+            <button className="loginButton">Submit</button>
             <span className="loginForget">Forgot Password?</span>
-            <button className="loginRegisterbutton">
-             
-            </button>
           </form>
         </div>
       </div>
