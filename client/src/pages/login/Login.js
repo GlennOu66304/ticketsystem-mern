@@ -4,17 +4,28 @@ import { useRef } from "react";
 import { loginCall } from "../../apiCalls";
 import { AuthContext } from "../../contexts/AuthContext";
 import { FaSignInAlt } from "react-icons/fa";
-export default function Login() {
+import { withRouter } from "react-router-dom";
+function Login(props) {
   const email = useRef();
   const password = useRef();
   const { user, dispatch } = useContext(AuthContext);
 
+  console.log(props);
+  // 路由组件中会包含
+  //    history
+  //    location
+  //    match
+  // 此处可以使用new URLSearchParams获取当前查询条件
+  //  使用模块qs也能获取查询条件
+  const params = new URLSearchParams(props.location.search);
+  console.log(params.get("t"));
+
   const handleClick = (e) => {
     e.preventDefault();
-    loginCall(
-      { email: email.current.value, password: password.current.value },
-      dispatch
-    );
+    // loginCall(
+    //   { email: email.current.value, password: password.current.value },
+    //   dispatch
+    // );
   };
   // console.log(user);
 
@@ -54,3 +65,5 @@ export default function Login() {
     </div>
   );
 }
+
+export default withRouter(Login);

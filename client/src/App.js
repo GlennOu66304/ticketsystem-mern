@@ -1,43 +1,44 @@
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
-import Profile from "./pages/profile/Profile";
-import TopBar from "../src/components/topBar/TopBar"
+import TicketsList from "./pages/ticketsList/TicketsList";
+import CreateTicket from "./pages/createTicket/CreateTicket";
+import TopBar from "../src/components/topBar/TopBar";
 // import { useContext } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // import { AuthContext } from "./contexts/AuthContext";
+// private router
+import PrivateRoute from "./PrivateRoute.jsx";
 
 function App() {
   // const { user } = useContext(AuthContext);
 
   return (
-  
     <Router>
-     
       <Switch>
-  
         <Route exact path="/">
-        <TopBar />
+          <TopBar />
           {/* {user ? <Home /> : <Register />} */}
           <Home />
         </Route>
 
         <Route path="/login">
-        <TopBar />
+          <TopBar />
           <Login />
-          {/* {user ? <Redirect to='/' /> : <Login />} */}
         </Route>
 
         <Route path="/register">
-        <TopBar />
-          {/* {user ? <Redirect to='/' /> : <Register />} */}
+          <TopBar />
           <Register />
         </Route>
 
-        <Route path="/profile/:username">
-        <TopBar />
-          <Profile />
-        </Route>
+        <PrivateRoute path="/dashboard" component={TicketsList}>
+          <TopBar />
+        </PrivateRoute>
+
+        <PrivateRoute path="/createticket" component={CreateTicket}>
+          <TopBar />
+        </PrivateRoute>
       </Switch>
     </Router>
   );

@@ -1,5 +1,6 @@
 import React from "react";
 import { FaQuestionCircle, FaEnvelope } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import "./home.css";
 
 export default function Home() {
@@ -9,13 +10,22 @@ export default function Home() {
       <p>Please choose from an option below</p>
 
       <div className="create-tickets">
-        <FaQuestionCircle />
-        <span>create New Ticket</span>
+        <Link
+          to="/createticket"
+          style={{ textDecoration: "none", color: "black" }}
+        >
+          <FaQuestionCircle />
+          <span>create New Ticket</span>
+        </Link>
       </div>
-
       <div className="check-tickets">
-        <FaEnvelope />
-        <span> View My tickets</span>
+        <Link
+          to="/dashboard"
+          style={{ textDecoration: "none", color: "white" }}
+        >
+          <FaEnvelope />
+          <span> View My tickets</span>
+        </Link>
       </div>
     </div>
   );

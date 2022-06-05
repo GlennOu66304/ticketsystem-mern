@@ -12,7 +12,7 @@ export default function Register() {
   const handleClick = async (e) => {
     e.preventDefault();
     if (passwordAgain.current.value !== password.current.value) {
-      password.current.setCustomValidity("password don't match");
+      password.current.setCustomValidity("password doesn't match");
     } else {
       const user = {
         username: username.current.value,
@@ -32,11 +32,11 @@ export default function Register() {
   return (
     <div className="login">
       <div className="loginWrapper">
-        <h3 className="loginLogo">Register </h3>
-        <span className="loginDesc">
+        <h3 className="loginLogo">
           {" "}
-          <FaUserAlt /> Please create an account
-        </span>
+          <FaUserAlt /> Register{" "}
+        </h3>
+        <span className="loginDesc">Please create an account</span>
       </div>
 
       <form className="loginBox" onSubmit={handleClick}>
@@ -69,9 +69,8 @@ export default function Register() {
           ref={passwordAgain}
         />
         <button className="loginButton" type="submit">
-         submit
+          submit
         </button>
-      
       </form>
     </div>
   );

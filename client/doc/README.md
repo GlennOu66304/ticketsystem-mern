@@ -1,8 +1,28 @@
 
 
+Login  redux usage
+
+1.install the package
+
+2.private router
+
+2.1 router function build
+
+2.2 use this funcion in the app.js router component
+
+2.3 private router route page component fix
+
+3.login click the triggier the login action in reduex
+
+4.
+
+
+
 ## Home Page, login, register page build
 
 1.home page
+
+1.0 trigger function
 
 1.1nav bar(name, login and register button)
 

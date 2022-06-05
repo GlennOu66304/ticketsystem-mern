@@ -17,11 +17,11 @@ export default function TopBar() {
 
       <div className="topbarRight">
         {/* login */}
-        <Link to="/login" style={{ textDecoration: "none",color: "black"}}>
+        <Link to="/login" style={{ textDecoration: "none", color: "black" }}>
           <FaSignInAlt /> Login
         </Link>
         {/* register */}
-        <Link to="/register" style={{ textDecoration: "none",color: "black" }}>
+        <Link to="/register" style={{ textDecoration: "none", color: "black" }}>
           <FaUserAlt /> Register
         </Link>
       </div>
