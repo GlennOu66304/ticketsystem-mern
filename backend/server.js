@@ -18,7 +18,7 @@ app.use(helmet());
 app.use(morgan("common"));
 
 import userRoute from "./routes/users/users.js";
-import authRoute from "./routes/auth2.js";
+import authRoute from "./routes/auth/auth2.js";
 
 // file upload
 const storage = multer.diskStorage({
@@ -54,7 +54,7 @@ dotenv.config();
 // mongodb connect
 mongoose.connect(
   process.env.MONGO_URL,
-  { useNewUrlParser: true, useUnifiedTopology: true,useCreateIndex: true, },
+  { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true },
   () => {
     console.log("Connect to Mangodb Successfully");
   }
