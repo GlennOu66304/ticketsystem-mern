@@ -1,6 +1,20 @@
 
 
+## Home Page, login, register page build
 
+1.home page
+
+1.1nav bar(name, login and register button)
+
+1.2 welcome text
+
+1.3 two big button: create ticket, , view ticket
+
+
+
+2.login page
+
+3.register page
 
 
 
@@ -15,6 +29,8 @@
 4.ajax library
 
 5.post man json doc
+
+
 
 
 

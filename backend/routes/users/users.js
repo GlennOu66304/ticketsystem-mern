@@ -11,7 +11,7 @@ router.delete("/:id", UserController.deleteUser);
 
 //get a user
 
-router.get("/", authJwt, UserController.getAUser);
+router.get("/",  UserController.getAUser);
 
 //getFriends
 
