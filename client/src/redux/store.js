@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 // import counterReducer from './auth/slice'
 
-import userReducer from "./auth/slice1";
+import userReducer from "./auth/slice";
 
 
 

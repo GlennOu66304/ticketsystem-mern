@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { FaSignInAlt } from "react-icons/fa";
 import { withRouter } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { signIn } from "../../redux/auth/slice1";
+import { signIn } from "../../redux/auth/slice";
 import { useHistory } from "react-router-dom";
 import React, { useEffect } from "react";
 function Login(props) {
