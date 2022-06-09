@@ -1,13 +1,32 @@
 import "./topBar.css";
 import { FaSignInAlt, FaUserAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
-// import { AuthContext } from "../../contexts/AuthContext";
-// import { useContext } from "react";
-
+import { logOut } from "../../redux/auth/slice";
+import { useSelector,useDispatch } from "react-redux";
 export default function TopBar() {
-  //   const { user } = useContext(AuthContext);
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const isLogin = user.token ? true : false;
+ 
+  const logout = () => {
+    dispatch(logOut());
+  };
+  return isLogin ? (
+    <div className="topbarContainer">
+      <div className="topbarLeft">
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <span className="logo">Support Desk</span>
+        </Link>
+      </div>
 
-  return (
+      <div className="topbarRight">
+        {/* logout */}
+        <div onClick={logout}>
+          <FaUserAlt /> Logout
+        </div>
+      </div>
+    </div>
+  ) : (
     <div className="topbarContainer">
       <div className="topbarLeft">
         <Link to="/" style={{ textDecoration: "none" }}>

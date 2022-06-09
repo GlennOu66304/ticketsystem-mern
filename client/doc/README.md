@@ -24,6 +24,16 @@ Login  redux usage
 
 
 
+1.show the logout only when you login the system with the dashboard
+
+Store.getter'token yes show logout other register and login
+
+private router guard
+
+
+
+2.logout click will trigger the logout dispatch, and 
+
 ## Home Page, login, register page build
 
 1.home page
