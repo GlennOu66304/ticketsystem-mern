@@ -20,26 +20,24 @@ export default {
   },
   //Update  user
   updateTicket: async (req, res) => {
-    // if (req.body.userId === req.params.id || req.body.isAdmin) {
-    //   if (req.body.password) {
-    //     try {
-    //       const salt = await bcrypt.genSalt(10);
-    //       req.body.password = await bcrypt.hash(req.body.password, salt);
-    //     } catch (err) {
-    //       return res.status(500).json(err);
-    //     }
-    //   }
-    //   try {
-    //     const user = await User.findByIdAndUpdate(req.params.id, {
-    //       $set: req.body,
-    //     });
-    //     res.status(200).json("Acccount has been updated");
-    //   } catch (err) {
-    //     res.status(500).json(err);
-    //   }
-    // } else {
-    //   return res.status(403).json("You can only change your account");
-    // }
+    try {
+      const ticket = await TicketModel.findByIdAndUpdate(
+        req.params.id,
+        {
+          $set: req.body,
+          // username: req.body.username,
+          // email: req.body.email,
+          // desc: req.body.desc,
+        },
+        { upsert: true, setDefaultsOnInsert: true,new: true, }
+      );
+      // [yup this looks like a confirmed bug:]
+      // https://github.com/Automattic/mongoose/issues/5455
+      console.log(req.params.id);
+      res.status(200).json(ticket);
+    } catch (err) {
+      res.status(500).json(err);
+    }
   },
 
   //delete user

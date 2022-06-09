@@ -11,8 +11,8 @@ router.get("/", (req, res) => {
 //Create a Ticket
 router.post("/", TicketController.createTicket);
 
-// //Update  user
-// router.put("/:id", TicketController.updateUser);
+//Update  user
+router.put("/:id", TicketController.updateTicket);
 
 // //delete user
 // router.delete("/:id", TicketController.deleteUser);
