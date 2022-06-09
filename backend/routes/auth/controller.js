@@ -26,7 +26,9 @@ export default {
         bcrypt.hash(newUser.password, salt, (err, hash) => {
           if (err) throw err;
           newUser.password = hash;
-          newUser.save().then((user) => res.json(msg, "register successfully")); // send back the user data in the database
+          newUser
+            .save()
+            .then((user) => res.json({ msg: "register successfully" })); // send back the user data in the database
         });
       });
     });

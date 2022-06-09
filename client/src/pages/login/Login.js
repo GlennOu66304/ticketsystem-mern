@@ -13,7 +13,6 @@ function Login(props) {
   const dispatch = useDispatch();
   const history = useHistory();
   useEffect(() => {
-    
     if (jwt !== null) {
       history.push("/dashboard");
     }

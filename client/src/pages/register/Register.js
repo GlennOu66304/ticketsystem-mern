@@ -2,13 +2,16 @@ import React, { useRef } from "react";
 import "./register.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+// import { useDispatch } from "react-redux";
 import { FaUserAlt } from "react-icons/fa";
+// import { register } from "../../redux/auth/slice";
 export default function Register() {
   const username = useRef();
   const email = useRef();
   const password = useRef();
   const passwordAgain = useRef();
   const history = useHistory();
+  // const dispatch = useDispatch();
   const handleClick = async (e) => {
     e.preventDefault();
     if (passwordAgain.current.value !== password.current.value) {
@@ -21,11 +24,19 @@ export default function Register() {
       };
 
       try {
-        await axios.post("auth/register", user);
+        await axios.post("http://localhost:8800/api/auth/register", user);
         history.push("/login");
       } catch (err) {
         console.log(err);
       }
+
+      // dispatch(
+      //   register({
+      //     username: username.current.value,
+      //     email: email.current.value,
+      //     password: password.current.value,
+      //   })
+      // );
     }
   };
 

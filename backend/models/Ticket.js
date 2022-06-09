@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-const userSchema = new mongoose.Schema(
+const ticketSchema = new mongoose.Schema(
   {
     username: {
       type: String,
@@ -14,14 +14,12 @@ const userSchema = new mongoose.Schema(
       max: 50,
       unique: true,
     },
-    password: {
+
+    desc: {
       type: String,
-      require: true,
-      min: 6,
-      unique: true,
     },
   },
   { timestamps: true }
 );
 
-export default mongoose.model("User", userSchema); //colle and schema
+export default mongoose.model("Ticket", ticketSchema); //colle and schema

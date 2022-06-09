@@ -2,12 +2,12 @@ import "./topBar.css";
 import { FaSignInAlt, FaUserAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { logOut } from "../../redux/auth/slice";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 export default function TopBar() {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const isLogin = user.token ? true : false;
- 
+
   const logout = () => {
     dispatch(logOut());
   };
@@ -21,9 +21,9 @@ export default function TopBar() {
 
       <div className="topbarRight">
         {/* logout */}
-        <div onClick={logout}>
+        <button onClick={logout} className="logout">
           <FaUserAlt /> Logout
-        </div>
+        </button>
       </div>
     </div>
   ) : (

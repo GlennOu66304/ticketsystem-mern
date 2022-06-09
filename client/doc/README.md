@@ -1,6 +1,26 @@
 
 
-Login  redux usage
+## Tickets
+
+Goal
+
+API
+
+1.create a ticket
+
+2.display the ticket
+
+3.get the single ticket information
+
+4.close  the ticket use the put method to updata the ticket status
+
+
+
+UI section
+
+
+
+## Login  redux usage
 
 1.install the package
 

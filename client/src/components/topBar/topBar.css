@@ -41,3 +41,6 @@
   cursor: pointer;
   position: relative;
 }
+.logout{
+  cursor:pointer
+}
