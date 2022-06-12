@@ -1,6 +1,7 @@
 import express from "express";
 import { authJwt } from "../middleware/passport.js";
 import TicketController from "./controller.js";
+
 const router = express.Router();
 
 // test route
@@ -9,11 +10,14 @@ router.get("/", (req, res) => {
 });
 
 //Create a Ticket
-router.post("/", TicketController.createTicket);
+router.post("/", authJwt, TicketController.createTicket);
 
-//Update  user
-router.put("/:id", TicketController.updateTicket);
-
+//Update  a ticket
+router.put("/:id", authJwt, TicketController.updateTicket);
+// get a ticket 
+router.get("/:id", authJwt, TicketController.getATicket);
+// get tickets under this user
+router.get("/list", authJwt, TicketController.getAuserAllTicket);
 // //delete user
 // router.delete("/:id", TicketController.deleteUser);
 

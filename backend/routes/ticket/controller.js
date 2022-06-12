@@ -1,11 +1,10 @@
 import TicketModel from "../../models/Ticket.js ";
-
+import UserModel from "../../models/User.js ";
 export default {
   createTicket: async (req, res) => {
     //  use the Model
     const newTicket = new TicketModel({
-      username: req.body.username,
-      email: req.body.email,
+      user: req.user.id,
       desc: req.body.desc,
     });
     // save the modle data into the database
@@ -18,9 +17,20 @@ export default {
         console.error(err);
       });
   },
-  //Update  user
+  //Update  ticket
   updateTicket: async (req, res) => {
     try {
+      // this step check is finished in the passport.js
+      // 1.confirm the user id first from the req.id; 2. confirm the ticket id again ; 3. process the ticket change
+
+      // const user = await UserModel.findById(req.user.id);// here find a documentation
+
+      // // console.log(user.id)// req .id not the id from the database
+      // if (!user) {
+      //   res.status(501)
+      //   throw new Error("no user found");
+      // }
+
       const ticket = await TicketModel.findByIdAndUpdate(
         req.params.id,
         {
@@ -29,11 +39,11 @@ export default {
           // email: req.body.email,
           // desc: req.body.desc,
         },
-        { upsert: true, setDefaultsOnInsert: true,new: true, }
+        { upsert: true, setDefaultsOnInsert: true, new: true }
       );
       // [yup this looks like a confirmed bug:]
       // https://github.com/Automattic/mongoose/issues/5455
-      console.log(req.params.id);
+      // console.log(req.params.id);
       res.status(200).json(ticket);
     } catch (err) {
       res.status(500).json(err);
@@ -57,17 +67,26 @@ export default {
   //get a user
 
   getATicket: async (req, res) => {
-    //   const userId = req.query.userId;
-    //   const username = req.query.username;
-    //   try {
-    //     const user = userId
-    //       ? await User.findById(userId)
-    //       : await User.findOne({ username: username });
-    //     const { password, updatedAt, ...other } = user._doc;
-    //     res.status(200).json(other);
-    //   } catch (err) {
-    //     return res.status(500).json(err);
-    //   }
-    // },
+    // ticket details content only the ticket creater can view it
+    // verifiy the user login, then go to the ticket id
+
+    const ticketDetails = await TicketModel.findById(req.params.id);
+    if (!ticketDetails) {
+      res.status(404).json({ msg: "no ticket details found" });
+    }
+
+    res.status(200).json(ticketDetails);
+  },
+
+  // get all ticket
+  getAuserAllTicket: async (req, res) => {
+    const data = await TicketModel.find({ user: req.user.id });
+
+    // use the req.id to qury all the ticket
+    if (!res) {
+      res.status(403).json({ msg: "no user found" });
+    }
+
+    res.status(200).json(data);
   },
 };

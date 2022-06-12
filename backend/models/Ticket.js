@@ -1,22 +1,14 @@
 import mongoose from "mongoose";
 const ticketSchema = new mongoose.Schema(
   {
-    username: {
-      type: String,
-      require: true,
-      min: 2,
-      max: 20,
-      unique: true,
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User"
     },
-    email: {
-      type: String,
-      require: true,
-      max: 50,
-      unique: true,
-    },
-
+ 
     desc: {
       type: String,
+      required: true,
     },
   },
   { timestamps: true }
