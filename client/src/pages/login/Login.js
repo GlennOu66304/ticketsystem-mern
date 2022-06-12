@@ -12,11 +12,11 @@ function Login(props) {
   const jwt = useSelector((state) => state.user.token);
   const dispatch = useDispatch();
   const history = useHistory();
-  useEffect(() => {
-    if (jwt !== null) {
-      history.push("/dashboard");
-    }
-  }, [jwt]);
+  // useEffect(() => {
+  //   if (jwt !== null) {
+  //     history.push("/dashboard");
+  //   }
+  // }, [jwt]);
 
   const handleClick = (e) => {
     e.preventDefault();

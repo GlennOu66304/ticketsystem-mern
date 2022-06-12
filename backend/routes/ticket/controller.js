@@ -20,24 +20,10 @@ export default {
   //Update  ticket
   updateTicket: async (req, res) => {
     try {
-      // this step check is finished in the passport.js
-      // 1.confirm the user id first from the req.id; 2. confirm the ticket id again ; 3. process the ticket change
-
-      // const user = await UserModel.findById(req.user.id);// here find a documentation
-
-      // // console.log(user.id)// req .id not the id from the database
-      // if (!user) {
-      //   res.status(501)
-      //   throw new Error("no user found");
-      // }
-
       const ticket = await TicketModel.findByIdAndUpdate(
         req.params.id,
         {
           $set: req.body,
-          // username: req.body.username,
-          // email: req.body.email,
-          // desc: req.body.desc,
         },
         { upsert: true, setDefaultsOnInsert: true, new: true }
       );
@@ -50,18 +36,15 @@ export default {
     }
   },
 
-  //delete user
+  //delete ticket
   deletetTicket: async (req, res) => {
-    // if (req.body.userId === req.params.id || req.body.isAdmin) {
-    //   try {
-    //     const user = await User.findOneAndDelete(req.params.id);
-    //     res.status(200).json("Acccount has been deleted");
-    //   } catch (err) {
-    //     return res.status(500).json(err);
-    //   }
-    // } else {
-    //   return res.status(403).json("You can only delete your account");
-    // }
+    TicketModel.findOneAndDelete(req.params.id)
+      .then(() => {
+        res.status(200).json("Ticket has been deleted");
+      })
+      .catch((err) => {
+        res.status(404).json({ msg: "delete failed" });
+      });
   },
 
   //get a user
@@ -69,24 +52,30 @@ export default {
   getATicket: async (req, res) => {
     // ticket details content only the ticket creater can view it
     // verifiy the user login, then go to the ticket id
-
-    const ticketDetails = await TicketModel.findById(req.params.id);
-    if (!ticketDetails) {
-      res.status(404).json({ msg: "no ticket details found" });
-    }
-
-    res.status(200).json(ticketDetails);
+    await TicketModel.findById(req.params.id)
+      .then((res) => {
+        res.status(200).json(res);
+      })
+      .catch((err) => {
+        res.status(404).json({ msg: "no ticket details found" });
+      });
   },
 
   // get all ticket
   getAuserAllTicket: async (req, res) => {
-    const data = await TicketModel.find({ user: req.user.id });
+    console.log(req.user.id);
+    const data = await TicketModel.find({ user: req.user.id }, (err, res) => {
+      if (err) {
+        // res.status(403).json({ msg: "no user found" });
+        console.log(err);
+      }
+      // res.status(200).json(res);
+      console.log("data fetch succsssfully");
+    });
 
-    // use the req.id to qury all the ticket
-    if (!res) {
+    if (!data) {
       res.status(403).json({ msg: "no user found" });
     }
-
     res.status(200).json(data);
   },
 };
