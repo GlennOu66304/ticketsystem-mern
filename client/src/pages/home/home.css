@@ -1,27 +1,31 @@
 .homeContainer {
-  width: 100%;
+  width: 900px;
+  height: 400px;
   text-align: center;
+  margin-left: 120px;
+  margin-top: 50px;
 }
 
+.guide-text {
+  padding-top: 80px;
+}
+.tickets {
+  margin-top: 100px;
+  height: 60px;
+  width: 500px;
+  margin-left: 200px;
+}
 .create-tickets {
-  width: 900px;
-  padding-top: 20px;
   text-align: center;
-  border: 1px solid gray;
-  margin-left: 425px;
-  margin-bottom: 20px;
-  margin-top: 200px;
-  cursor: pointer;
+  background-color: rgb(238, 238, 238);
 }
 
 .check-tickets {
-  width: 900px;
-  padding-top: 20px;
   text-align: center;
-  border: 1px solid gray;
-  margin-left: 425px;
+  margin-top: 15px;
   background-color: black;
-  color: white;
-  cursor: pointer;
 }
 
+.content {
+  margin-right: 90px;
+}

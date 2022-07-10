@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-
+import { useSelector } from "react-redux";
 // state
 
 const initialState = {
@@ -8,6 +8,7 @@ const initialState = {
   error: null,
   token: null,
   data: null,
+  tickets: [],
 };
 
 export const register = createAsyncThunk(
@@ -35,8 +36,25 @@ export const signIn = createAsyncThunk(
       email: paramaters.email,
       password: paramaters.password,
     });
-
+    localStorage.setItem("token", data.token);
     return data.token; // return must be token,otherwise will cause token invalid
+  }
+);
+
+export const loadtickets = createAsyncThunk(
+  "tickets/loadtickets",
+
+  async (_, thunkAPI) => {
+    // const token = thunkAPI.getState().state.token;
+    const token = localStorage.getItem("token");
+    const res = await axios.get("http://localhost:8800/api/ticket", {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `${token}`,
+      },
+    });
+
+    return res.data; // return must be token,otherwise will cause token invalid
   }
 );
 
@@ -87,6 +105,21 @@ export const userSlice = createSlice({
     // rejected
 
     [signIn.rejected.type]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+    [loadtickets.pending.type]: (state) => {
+      state.loading = true;
+    },
+
+    // fulfilled
+    [loadtickets.fulfilled.type]: (state, action) => {
+      state.loading = false;
+      state.tickets = [...state.tickets, ...action.payload];
+    },
+    // rejected
+
+    [loadtickets.rejected.type]: (state, action) => {
       state.loading = false;
       state.error = action.payload;
     },

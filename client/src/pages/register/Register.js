@@ -41,45 +41,39 @@ export default function Register() {
   };
 
   return (
-    <div className="login">
-      <div className="loginWrapper">
-        <h3 className="loginLogo">
-          {" "}
-          <FaUserAlt /> Register{" "}
-        </h3>
-        <span className="loginDesc">Please create an account</span>
-      </div>
+    <div className="register">
+      <h3 className="registerLogo">
+        <FaUserAlt /> Register{" "}
+      </h3>
+      <span className="registerDesc">Please create an account</span>
 
-      <form className="loginBox" onSubmit={handleClick}>
-        <input
-          placeholder="Username"
-          required
-          className="loginInput"
-          ref={username}
-        />
-        <input
-          placeholder="Email"
-          required
-          type="email"
-          className="loginInput"
-          ref={email}
-        />
-        <input
-          placeholder="Password"
-          required
-          type="password"
-          minLength="6"
-          className="loginInput"
-          ref={password}
-        />
-        <input
-          placeholder="Password Again"
-          required
-          type="password"
-          className="loginInput"
-          ref={passwordAgain}
-        />
-        <button className="loginButton" type="submit">
+      <form onSubmit={handleClick}>
+        <div className="form-group">
+          <input placeholder="Username" required ref={username} />
+        </div>
+        <div className="form-group">
+          <input placeholder="Email" required type="email" ref={email} />
+        </div>
+        <div className="form-group">
+          <input
+            placeholder="Password"
+            required
+            type="password"
+            minLength="6"
+            ref={password}
+          />
+        </div>
+
+        <div className="form-group">
+          <input
+            placeholder="Password Again"
+            required
+            type="password"
+            ref={passwordAgain}
+          />
+        </div>
+
+        <button className="registerButton" type="submit">
           submit
         </button>
       </form>

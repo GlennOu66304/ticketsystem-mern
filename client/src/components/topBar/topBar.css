@@ -6,6 +6,7 @@
   position: sticky;
   top: 0;
   z-index: 999;
+  /* background-color:yellow; */
 }
 
 .topbarLeft {
@@ -26,15 +27,18 @@
   align-items: center;
   justify-content: space-around;
   color: black;
+  /* background-color:green; */
+  margin-right: 100px;
+  height: 50px;
 }
-.topbarLink {
+/* .topbarLink {
   margin-left: 10px;
-  font-size: 14px;
+  font-size: 10px;
   cursor: pointer;
 }
 .topbarIcons {
   display: flex;
-}
+} */
 
 .topbarIconItem {
   margin-right: 15px;
@@ -43,4 +47,8 @@
 }
 .logout{
   cursor:pointer
+}
+
+span{
+  cursor: pointer;
 }

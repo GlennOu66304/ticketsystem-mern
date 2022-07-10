@@ -12,11 +12,11 @@ function Login(props) {
   const jwt = useSelector((state) => state.user.token);
   const dispatch = useDispatch();
   const history = useHistory();
-  // useEffect(() => {
-  //   if (jwt !== null) {
-  //     history.push("/dashboard");
-  //   }
-  // }, [jwt]);
+  useEffect(() => {
+    if (jwt !== null) {
+      history.push("/dashboard");
+    }
+  }, [jwt]);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -27,37 +27,36 @@ function Login(props) {
 
   return (
     <div className="login">
-      <div className="loginWrapper">
-        {/* login left */}
-        <div className="loginLeft">
-          <h3 className="loginLogo">
-            <FaSignInAlt /> Login
-          </h3>
-          <span className="loginDesc">Please Login to get Support</span>
+      <h3 className="loginLogo">
+        <FaSignInAlt /> Login
+      </h3>
+      <span className="loginDesc">Please Login to get Support</span>
+
+      <form action="" className="loginBox" onSubmit={handleClick}>
+        <div className="form-group">
+          <input
+            placeholder="Email"
+            required
+            type="email"
+            className="loginInput"
+            ref={email}
+          />
         </div>
-        {/* loginRight */}
-        <div className="loginRight">
-          <form action="" className="loginBox" onSubmit={handleClick}>
-            <input
-              placeholder="Email"
-              required
-              type="email"
-              className="loginInput"
-              ref={email}
-            />
-            <input
-              placeholder="password"
-              required
-              minLength={6}
-              className="loginInput"
-              type="password"
-              ref={password}
-            />
-            <button className="loginButton">Submit</button>
-            <span className="loginForget">Forgot Password?</span>
-          </form>
+
+        <div className="form-group">
+          <input
+            placeholder="password"
+            required
+            minLength={6}
+            className="loginInput"
+            type="password"
+            ref={password}
+          />
         </div>
-      </div>
+        {/* <a className="loginForget">Forgot Password?</a> */}
+        <button className="loginButton">Submit</button>
+      </form>
+      <a className="loginForget">Forgot Password?</a>
     </div>
   );
 }
