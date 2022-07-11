@@ -23,9 +23,9 @@ export default function TopBar() {
 
       <div className="topbarRight">
         {/* logout */}
-        <button onClick={logout} className="logout">
+        <span onClick={logout} className="logout">
           <FaUserAlt /> Logout
-        </button>
+        </span>
       </div>
     </div>
   ) : (
@@ -54,7 +54,7 @@ export default function TopBar() {
             <FaUserAlt /> Register
           </span>
         </Link> */}
-        <span
+        <span 
           onClick={() => {
             history.push("./register");
           }}

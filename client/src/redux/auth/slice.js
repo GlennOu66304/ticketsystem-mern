@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { useSelector } from "react-redux";
+
 // state
 
 const initialState = {
@@ -46,6 +46,7 @@ export const loadtickets = createAsyncThunk(
 
   async (_, thunkAPI) => {
     // const token = thunkAPI.getState().state.token;
+    
     const token = localStorage.getItem("token");
     const res = await axios.get("http://localhost:8800/api/ticket", {
       headers: {

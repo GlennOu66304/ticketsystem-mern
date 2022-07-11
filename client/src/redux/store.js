@@ -3,16 +3,12 @@ import { configureStore } from "@reduxjs/toolkit";
 
 import userReducer from "./auth/slice";
 
-
-
 const store = configureStore({
   reducer: {
-    user:userReducer
+    user: userReducer,
   },
 
   devTools: true, //enable the redux dev tool
 });
 
-
-
-export default store
+export default store;

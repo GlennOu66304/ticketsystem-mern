@@ -16,7 +16,7 @@ function Login(props) {
     if (jwt !== null) {
       history.push("/dashboard");
     }
-  }, [jwt]);
+  }, [jwt, history]);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -56,7 +56,7 @@ function Login(props) {
         {/* <a className="loginForget">Forgot Password?</a> */}
         <button className="loginButton">Submit</button>
       </form>
-      <a className="loginForget">Forgot Password?</a>
+      <p className="loginForget">Forgot Password?</p>
     </div>
   );
 }

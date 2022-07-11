@@ -28,6 +28,7 @@ form{
 input{
     width:260px;
     height: 20px;
+    outline:none;
 }
 .loginButton{
     margin-top:20px;
@@ -40,8 +41,4 @@ input{
     color:white;
     border: 2px solid #00a441;
     cursor: pointer;
-}
-a{
-    margin-top:30px;
-    margin-left:90px;
 }

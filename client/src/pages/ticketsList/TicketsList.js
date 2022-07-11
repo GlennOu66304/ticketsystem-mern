@@ -1,40 +1,50 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./ticketsList.css";
 import { FaArrowLeft } from "react-icons/fa";
 import { withRouter } from "react-router-dom";
-import axios from "axios";
+
 import { useDispatch, useSelector } from "react-redux";
 import TopBar from "../../components/topBar/TopBar";
 import Ticket from "../../components/ticket/Ticket";
 import { loadtickets } from "../../redux/auth/slice";
 function TicketsList() {
+  // useSelector call the reducer in the store not the inital state from the slice
+  const { tickets } = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  // console.log(tickets.length);
 
+  // Conditionally Running Effects
+  // https://typeofnan.dev/fix-the-react-hook-is-called-conditionally-error-in-react/
   useEffect(() => {
-    dispatch(loadtickets());
-  }, [dispatch]);
-  const tickets = useSelector((state) => state.tickets);
-  console.log(tickets);
+    if (tickets.length === 0) {
+      dispatch(loadtickets());
+    }
+  }, [dispatch, tickets.length]);
+
   return (
     <div className="tickets-list">
       <TopBar />
-      <h2>Ticket</h2>
-      {/* go back tab will trigger the router to go back to the previus page */}
-      <FaArrowLeft />
 
-      <h3>Back</h3>
-
-      {/* taable section :date,products,status*/}
-      <div>
-        <span>Create At Date</span>
-        <span>desc</span>
+      <div className="goback">
+        {/* go back tab will trigger the router to go back to the previus page */}
+        <FaArrowLeft />
+        Back
       </div>
+      <h2 className="title">Tickets</h2>
+      {/* taable section :date,products,status*/}
+      <div className="sections-name">
+        <span className="date">Date</span>
+        <span className="desc">desc</span>
+        <span className="status">Status</span>
+        {/* table data :data of date, produca name, status, button to trigger the ticket details*/}
+      </div>
+      <div className="data-display">
+        {tickets.map((item) => (
+          <Ticket key={item._id} item={item} />
+        ))}
 
-      {/* table data :data of date, produca name, status, button to trigger the ticket details*/}
-      {tickets.map(item => (
-        <Ticket key={item.id} item={item} />
-      ))}
-      {/* tickets.map to render the component to achievement */}
+        {/* tickets.map to render the component to achievement */}
+      </div>
     </div>
   );
 }

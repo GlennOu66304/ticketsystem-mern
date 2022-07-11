@@ -63,7 +63,7 @@ export default {
 
   // get all ticket
   getAuserAllTicket: async (req, res) => {
-    console.log(req.user.id);
+    // console.log(req.user.id);
     const data = await TicketModel.find({ user: req.user.id }, (err, res) => {
       if (err) {
         // res.status(403).json({ msg: "no user found" });

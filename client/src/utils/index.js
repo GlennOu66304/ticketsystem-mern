@@ -20,7 +20,7 @@ axios.interceptors.request.use(
 );
 
 // When the response is finish , then loading stop
-//请求拦截
+//response
 axios.interceptors.response.use(
   (response) => {
     // headers authorization: local storgae
