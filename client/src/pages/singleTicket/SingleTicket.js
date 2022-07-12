@@ -1,13 +1,21 @@
-// import React, { useState } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "./singleTicket.css";
-import { withRouter, useParams,useHistory } from "react-router-dom";
-// import axios from "axios";
-// import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
+
 import TopBar from "../../components/topBar/TopBar";
 import { FaArrowLeft } from "react-icons/fa";
-function SignleTicket(props) {
+import { loadAticket } from "../../redux/auth/slice";
+function SignleTicket() {
   let { id } = useParams();
   const history = useHistory();
+  const dispatch = useDispatch();
+  const { ticket } = useSelector((state) => state.user);
+  console.log(ticket);
+  useEffect(() => {
+    dispatch(loadAticket(id));
+  }, [dispatch, id]);
+
   return (
     <div className="single-ticket">
       <TopBar />
@@ -16,8 +24,17 @@ function SignleTicket(props) {
         <FaArrowLeft />
         Back
       </div>
-      <h2>this is the signleTicket page:{id}</h2>
+      <h2>Ticket ID:{ticket._id}</h2>
+      <h3>Date Submitted:{ticket.createdAt}</h3>
+      <h3>Product:{ticket.product}</h3>
+      <hr />
+      <div className="description_issue">
+        <h3>Description of issue</h3>
+        {ticket.desc}
+      </div>
+
+      <button>Close Ticket</button>
     </div>
   );
 }
-export default withRouter(SignleTicket);
+export default SignleTicket;

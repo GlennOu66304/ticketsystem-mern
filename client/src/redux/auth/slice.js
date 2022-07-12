@@ -7,8 +7,10 @@ const initialState = {
   loading: false,
   error: null,
   token: null,
-  data: null,
+  data: {},
   tickets: [],
+  ticket:{}
+  
 };
 
 export const register = createAsyncThunk(
@@ -70,6 +72,21 @@ export const loadtickets = createAsyncThunk(
         Authorization: `${token}`,
       },
     });
+
+    return res.data; // return must be token,otherwise will cause token invalid
+  }
+);
+
+export const loadAticket = createAsyncThunk(
+  "tickets/loadAticket",
+
+  async (paramaters, thunkAPI) => {
+    // const token = thunkAPI.getState().state.token;
+
+    // const token = localStorage.getItem("token");
+    const res = await axios.get(
+      `http://localhost:8800/api/ticket/${paramaters}`
+    );
 
     return res.data; // return must be token,otherwise will cause token invalid
   }
@@ -137,6 +154,22 @@ export const userSlice = createSlice({
     // rejected
 
     [loadtickets.rejected.type]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+    [loadAticket.pending.type]: (state) => {
+      state.loading = true;
+    },
+
+    // fulfilled
+    [loadAticket.fulfilled.type]: (state, action) => {
+      state.loading = false;
+      state.ticket =action.payload
+    
+    },
+    // rejected
+
+    [loadAticket.rejected.type]: (state, action) => {
       state.loading = false;
       state.error = action.payload;
     },

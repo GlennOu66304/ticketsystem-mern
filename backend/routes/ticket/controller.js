@@ -55,13 +55,17 @@ export default {
   getATicket: async (req, res) => {
     // ticket details content only the ticket creater can view it
     // verifiy the user login, then go to the ticket id
-    await TicketModel.findById(req.params.id)
-      .then((res) => {
-        res.status(200).json(res);
-      })
-      .catch((err) => {
+    console.log(req.params.id);
+    await TicketModel.findById(req.params.id, (err, docs) => {
+      if (err) {
         res.status(404).json({ msg: "no ticket details found" });
-      });
+      } else {
+        // console.log("Result : ", docs);
+        res.status(200).json(docs);
+      }
+    })
+    
+     
   },
 
   // get all ticket
