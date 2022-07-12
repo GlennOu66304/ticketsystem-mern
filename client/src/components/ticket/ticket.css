@@ -2,7 +2,7 @@
   width: 600px;
   height: 30px;
   background-color: #eeeeee;
-  margin-left: 300px;
+  margin-left: 200px;
   margin-bottom: 20px;
   text-align: center;
 }
@@ -12,14 +12,15 @@
   float: left;
 }
 
-.desc {
+.desc2 {
   margin-top:5px;
-  margin-left: 10px;
+
+  margin-right:100px;
 }
 
 .status2 {
   margin-top:5px;
-  margin-left: 10px;
+  margin-right: 10px;
   background-color: green;
   color: white;
 }
@@ -28,7 +29,7 @@
   
   margin-right: 10px;
   float: right;
-  background-color: white;
+  /* background-color: white; */
   color: black;
   border-radius: 5px;
   cursor: pointer;

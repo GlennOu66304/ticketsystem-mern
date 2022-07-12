@@ -1,11 +1,12 @@
 import axios from "axios";
-import { useSelector } from "react-redux";
+
 
 //请求拦截
 axios.interceptors.request.use(
   (config) => {
     // headers authorization: local storgae
-    const token = useSelector((state) => state.user.token);
+    // const token = useSelector((state) => state.user.token);
+    const token = localStorage.getItem("token");
     if (token) {
       config.headers.Authorization = token;
     }

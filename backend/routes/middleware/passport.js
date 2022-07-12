@@ -13,6 +13,7 @@ const privateKey = "ticketSystem";
 // opts:2)const opts, extract jws
 const opts = {};
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
+console.log(opts.jwtFromRequest)
 opts.secretOrKey = privateKey;
 
 // const JWTStrategy = new JWTStrategy(opts, (payload,done) =>{

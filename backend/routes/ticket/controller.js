@@ -5,6 +5,9 @@ export default {
     //  use the Model
     const newTicket = new TicketModel({
       user: req.user.id,
+      name: req.body.name,
+      email: req.body.email,
+      product: req.body.product,
       desc: req.body.desc,
     });
     // save the modle data into the database

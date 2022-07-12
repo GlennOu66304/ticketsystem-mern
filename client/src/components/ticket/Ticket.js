@@ -7,13 +7,14 @@ export default function ticket(props) {
   return (
     <div className="ticket">
       <span className="date">{item.createdAt}</span>
-      <span className="desc">{item.desc}</span>
-      <span className="status2">{item.user}</span>
+      <span className="desc2">{item.desc}</span>
+      
       
         <Link
         className="view-details"
           to={`/ticket/${item._id}`}
         >
+          <span className="status2">{item.name}</span>
           view
         </Link>
       

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./ticketsList.css";
 import { FaArrowLeft } from "react-icons/fa";
-import { withRouter } from "react-router-dom";
+import { withRouter,useHistory } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 import TopBar from "../../components/topBar/TopBar";
@@ -12,7 +12,7 @@ function TicketsList() {
   const { tickets } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   // console.log(tickets.length);
-
+  const history = useHistory();
   // Conditionally Running Effects
   // https://typeofnan.dev/fix-the-react-hook-is-called-conditionally-error-in-react/
   useEffect(() => {
@@ -25,8 +25,12 @@ function TicketsList() {
     <div className="tickets-list">
       <TopBar />
 
-      <div className="goback">
-        {/* go back tab will trigger the router to go back to the previus page */}
+      <div className="goback" onClick={history.goBack}>
+        {/* go back tab will trigger the router to go back to the previus page 
+        Go Back to the Previous Page with React Router v5
+        https://thewebdev.info/2021/09/18/how-to-go-back-to-the-previous-page-with-react-router-v5/
+        */}
+
         <FaArrowLeft />
         Back
       </div>
@@ -35,7 +39,7 @@ function TicketsList() {
       <div className="sections-name">
         <span className="date">Date</span>
         <span className="desc">desc</span>
-        <span className="status">Status</span>
+        <span className="status">username</span>
         {/* table data :data of date, produca name, status, button to trigger the ticket details*/}
       </div>
       <div className="data-display">

@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "../../utils/index";
 
 // state
 
@@ -41,12 +41,28 @@ export const signIn = createAsyncThunk(
   }
 );
 
+export const buildTicket = createAsyncThunk(
+  "tickets/buildticket",
+
+  async (paramaters, thunkAPI) => {
+    // const token = thunkAPI.getState().state.token;
+
+    const res = await axios.post(
+      "http://localhost:8800/api/ticket",
+
+      paramaters
+    );
+
+    return res.data; // return must be token,otherwise will cause token invalid
+  }
+);
+
 export const loadtickets = createAsyncThunk(
   "tickets/loadtickets",
 
   async (_, thunkAPI) => {
     // const token = thunkAPI.getState().state.token;
-    
+
     const token = localStorage.getItem("token");
     const res = await axios.get("http://localhost:8800/api/ticket", {
       headers: {
